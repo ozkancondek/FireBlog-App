@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
-import { auth, googleProvider } from "../utils/firebaseUtil";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { auth } from "../utils/firebaseUtil";
 
 //! Create context for autentication data
 const AuthContext = createContext();
@@ -9,9 +9,17 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-export const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password);
   }
@@ -23,10 +31,10 @@ export const AuthContextProvider = ({ children }) => {
     auth.signOut();
   }
 
-  function loginWithGoogle() {
-    googleProvider.setCustomParameters({ prompt: "select_account" });
-    auth.signInWithPopup(googleProvider);
-  }
+  //   function loginWithGoogle() {
+  //     googleProvider.setCustomParameters({ prompt: "select_account" });
+  //     auth.signInWithPopup(googleProvider);
+  //   }
   function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
   }
@@ -46,7 +54,7 @@ export const AuthContextProvider = ({ children }) => {
     resetPassword,
     updatePassword,
     updateEmail,
-    loginWithGoogle,
+    // loginWithGoogle,
   };
 
   return (
@@ -55,3 +63,5 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthContextProvider;
