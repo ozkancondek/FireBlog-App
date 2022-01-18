@@ -19,14 +19,14 @@ export const AppRouter = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Dashboard />} />
         {false ? (
-          <>
+          <Fragment>
             <Route path="/profile" element={<Profile />} />
             <Route path="/new-blog" element={<NewBlog />} />
             <Route path="/update-blog/:id" element={<UpdateBlog />} />
             <Route path="/detail/:id" element={<Detail />} />
-          </>
+          </Fragment>
         ) : (
-          <Navigate to="/login" />
+          <Route path="*" element={<Navigate to="/" />} />
         )}
       </Routes>
     </>
