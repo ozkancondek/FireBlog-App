@@ -8,17 +8,18 @@ import { NewBlog } from "../pages/NewBlog";
 import { Profile } from "../pages/Profile";
 import { UpdateBlog } from "../pages/UpdateBlog";
 import Navbar from "../components/Navbar";
-import { PrivateRouter } from "./PrivateRouter";
+import { useAuth } from "../context/AuthContextProvider";
 
 export const AppRouter = () => {
+  const { currentUser } = useAuth();
   return (
-    <>
+    <Fragment>
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Dashboard />} />
-        {false ? (
+        {currentUser ? (
           <Fragment>
             <Route path="/profile" element={<Profile />} />
             <Route path="/new-blog" element={<NewBlog />} />
@@ -29,22 +30,6 @@ export const AppRouter = () => {
           <Route path="*" element={<Navigate to="/" />} />
         )}
       </Routes>
-    </>
+    </Fragment>
   );
 };
-
-//   return (
-//     <>
-//       <Navbar />
-//       <Routes>
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/register" element={<Register />} />
-//         <Route path="/" element={<Dashboard />} />
-//         <Route path="/profile" element={<Profile />} />
-//         <Route path="/profile" element={<PrivateRouter />} />
-//         <Route path="/new-blog" element={<PrivateRouter />} />
-//         <Route path="/detail" element={<PrivateRouter />} />
-//         <Route path="/update-blog" element={<PrivateRouter />} />
-//       </Routes>
-//     </>
-//   );

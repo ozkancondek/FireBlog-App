@@ -97,7 +97,7 @@ export default function Navbar() {
             >
               <AccountCircle fontSize="large" />
             </IconButton>
-            {false ? (
+            {currentUser?.email ? (
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
