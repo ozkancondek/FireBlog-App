@@ -89,7 +89,33 @@ export default function Navbar() {
             >
               <AccountCircle fontSize="large" />
             </IconButton>
-            {currentUser?.email ? null : (
+            {currentUser?.email ? (
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link to="/profile" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                </Link>
+                <Link to="/new-blog" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>New Blog</MenuItem>
+                </Link>
+                <Link to="/login" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                </Link>
+              </Menu>
+            ) : (
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
