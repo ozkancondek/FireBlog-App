@@ -11,6 +11,7 @@ export function useAuth() {
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

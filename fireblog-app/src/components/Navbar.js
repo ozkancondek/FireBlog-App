@@ -10,7 +10,8 @@ import Menu from "@mui/material/Menu";
 import { makeStyles } from "@mui/styles";
 import cwLogo from "../assets/cw.jpeg";
 import { useAuth } from "../context/AuthContextProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
 
 //https://mui.com/styles/basics/
 const useStyles = makeStyles(() => ({
@@ -43,10 +44,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,6 +56,11 @@ export default function Navbar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    setAnchorEl(null);
+    logout();
   };
 
   return (
@@ -66,6 +73,7 @@ export default function Navbar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={() => navigate("/")}
           >
             <img src={cwLogo} alt="logo" className={classes.logo} />
           </IconButton>
@@ -89,7 +97,7 @@ export default function Navbar() {
             >
               <AccountCircle fontSize="large" />
             </IconButton>
-            {currentUser?.email ? (
+            {false ? (
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -112,7 +120,7 @@ export default function Navbar() {
                   <MenuItem onClick={handleClose}>New Blog</MenuItem>
                 </Link>
                 <Link to="/login" className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                  <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                 </Link>
               </Menu>
             ) : (
