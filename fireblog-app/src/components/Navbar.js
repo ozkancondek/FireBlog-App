@@ -11,7 +11,6 @@ import { makeStyles } from "@mui/styles";
 import cwLogo from "../assets/cw.jpeg";
 import { useAuth } from "../context/AuthContextProvider";
 import { Link, useNavigate } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
 
 //https://mui.com/styles/basics/
 const useStyles = makeStyles(() => ({
