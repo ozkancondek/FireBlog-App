@@ -16,7 +16,7 @@ import { Form } from "react-bootstrap";
 import blokPng from "../assets/blok.png";
 import loadingGif from "../assets/loading.gif";
 import googlePng from "../assets/google.png";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     height: "100vh",
     "& .MuiPaper-root": {
@@ -36,23 +36,24 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "40px",
   },
   paper: {
-    margin: theme.spacing(4, 8),
+    margin: "32px 64px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    border: "2px solid red",
   },
   avatar: {
-    margin: theme.spacing(1),
-    width: theme.spacing(25),
-    height: theme.spacing(25),
+    margin: " 8px",
+    width: "200px",
+    height: "200px",
     backgroundColor: "#046582",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(2),
+    marginTop: "16px",
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: "24px 0 16px",
     backgroundColor: "#046582",
     color: "white",
     fontWeight: "bold",
