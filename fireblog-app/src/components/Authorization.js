@@ -4,14 +4,7 @@ import { useAuth } from "../context/AuthContextProvider";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { makeStyles } from "@mui/styles";
-import {
-  Avatar,
-  Button,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Form } from "react-bootstrap";
 import blokPng from "../assets/blok.png";
 import loadingGif from "../assets/loading.gif";
@@ -37,15 +30,12 @@ const useStyles = makeStyles(() => ({
   },
   paper: {
     margin: "32px 64px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    border: "2px solid red",
   },
   avatar: {
-    margin: " 8px",
+    margin: "auto",
     width: "200px",
     height: "200px",
+    borderRadius: "50%",
     backgroundColor: "#046582",
   },
   form: {
@@ -58,7 +48,7 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontWeight: "bold",
     "&:hover": {
-      color: "#046582",
+      backgroundColor: "#046582",
     },
   },
   header: {
@@ -108,9 +98,8 @@ const LoginAndRegisterForm = (props) => {
       <Grid container justifyContent="center" className={classes.image}>
         <Grid item component={Paper} elevation={6} square xs={12} sm={8} md={6}>
           <Grid className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <img src={blokPng} style={{ width: 200 }} alt="candela" />
-            </Avatar>
+            <img src={blokPng} className={classes.avatar} alt="candela" />
+
             <Typography className={classes.header} component="h1" variant="h5">
               ── {props.method} ──
             </Typography>
@@ -164,12 +153,18 @@ const LoginAndRegisterForm = (props) => {
                     {props.method}
                   </Button>
                   <Button
+                    style={{
+                      marginTop: "10px",
+                      backgroundColor: "white",
+                      fontWeight: "bold",
+                    }}
                     fullWidth
                     variant="contained"
                     onClick={handleGoogleProvider}
                     className={classes.googleBtn}
                   >
-                    With
+                    <p style={{ color: "black", marginRight: "5px" }}>Width</p>
+
                     <img
                       src={googlePng}
                       alt="google"
