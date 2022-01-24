@@ -9,6 +9,7 @@ import { Form } from "react-bootstrap";
 import blokPng from "../assets/blok.png";
 import loadingGif from "../assets/loading.gif";
 import googlePng from "../assets/google.png";
+import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
 const useStyles = makeStyles(() => ({
   root: {
     height: "100vh",
@@ -84,7 +85,6 @@ const ValidationSchema = Yup.object().shape({
 });
 
 const LoginAndRegisterForm = (props) => {
-  // console.log(props);
   const { loginWithGoogle } = useAuth();
 
   const handleGoogleProvider = () => {
@@ -92,6 +92,7 @@ const LoginAndRegisterForm = (props) => {
   };
   const { handleBlur, handleChange, errors, values, touched, isSubmitting } =
     props;
+  //console.log(isSubmitting);
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
@@ -200,31 +201,31 @@ const Authorization = (props) => {
         }}
         validationSchema={ValidationSchema}
         onSubmit={(values, actions) => {
-          //   if (method === "Login") {
-          //     login(values.email, values.password)
-          //       .then(() => {
-          //         toastSuccessNotify(`${method} Successfully performed!`);
-          //         history.push("/");
-          //         actions.setSubmitting(false);
-          //       })
-          //       .catch((error) => {
-          //         toastErrorNotify(error.message);
-          //         actions.setSubmitting(false);
-          //         actions.resetForm();
-          //       });
-          //   } else {
-          //     signup(values.email, values.password)
-          //       .then(() => {
-          //         toastSuccessNotify(`${method} Successfully performed!`);
-          //         history.push("/");
-          //         actions.setSubmitting(false);
-          //       })
-          //       .catch((error) => {
-          //         toastErrorNotify(error.message);
-          //         actions.setSubmitting(false);
-          //         actions.resetForm();
-          //       });
-          //   }
+          if (method === "Login") {
+            login(values.email, values.password)
+              .then(() => {
+                toastSuccessNotify(`${method} Successfully performed!`);
+                navigate("/");
+                actions.setSubmitting(false);
+              })
+              .catch((error) => {
+                toastErrorNotify(error.message);
+                actions.setSubmitting(false);
+                actions.resetForm();
+              });
+          } else {
+            signup(values.email, values.password)
+              .then(() => {
+                toastSuccessNotify(`${method} Successfully performed!`);
+                navigate("/");
+                actions.setSubmitting(false);
+              })
+              .catch((error) => {
+                toastErrorNotify(error.message);
+                actions.setSubmitting(false);
+                actions.resetForm();
+              });
+          }
         }}
         component={(props) => (
           <LoginAndRegisterForm method={method} {...props} />

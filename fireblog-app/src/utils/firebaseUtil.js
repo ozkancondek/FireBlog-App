@@ -1,6 +1,10 @@
-// import { firebase } from "firebase/app";
+// import firebase from "firebase/app";
 // import "firebase/auth";
 // import "firebase/database";
+
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
+// import "firebase/compat/firestore";
 
 // const firebaseUtil = firebase.initializeApp({
 //   apiKey: "AIzaSyCPMzCJkftfFP48Qm2W57uzGa8zC2NWc-0",
@@ -14,7 +18,7 @@
 // export default firebaseUtil;
 
 // export const auth = firebaseUtil.auth();
-// export const firebaseDB = firebaseUtil.database();
+// //export const firebaseDB = firebaseUtil.database();
 // export const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 import { initializeApp } from "firebase/app";

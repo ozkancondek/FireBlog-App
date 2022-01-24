@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../utils/firebaseUtil";
+import { auth, googleProvider } from "../utils/firebaseUtil";
 
 //! Create context for autentication data
 const AuthContext = createContext();
@@ -32,10 +32,11 @@ const AuthContextProvider = ({ children }) => {
     auth.signOut();
   }
 
-  //   function loginWithGoogle() {
-  //     googleProvider.setCustomParameters({ prompt: "select_account" });
-  //     auth.signInWithPopup(googleProvider);
-  //   }
+  // function loginWithGoogle() {
+  //   googleProvider.setCustomParameters({ prompt: "select_account" });
+  //   auth.signInWithPopup(googleProvider);
+  // }
+
   function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
   }
