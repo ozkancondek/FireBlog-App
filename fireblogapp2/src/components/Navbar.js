@@ -7,7 +7,8 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import Logo from "../assets/Logo1.png";
+
+import { GrRaspberry } from "react-icons/gr";
 import { useAuth } from "../context/AuthContextProvider";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -28,11 +29,20 @@ const useStyles = makeStyles((theme) => ({
     "& span": {
       fontSize: 30,
       fontWeight: "bolder",
-      color: "#00acc1",
+      color: "black",
+    },
+    "& span:hover": {
+      textDecoration: "underline",
     },
   },
+  logoSpan: {
+    fontSize: 30,
+    fontWeight: "bolder",
+    color: "#2C2C2C",
+    borderBottom: "5px solid #2C2C2C",
+  },
   appBar: {
-    backgroundColor: "#ffa000",
+    backgroundColor: "#1E90FF",
   },
   logo: {
     width: 180,
@@ -78,7 +88,11 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar
+        position="static"
+        className={classes.appBar}
+        sx={{ maxWidth: "md" }}
+      >
         <Toolbar>
           <IconButton
             edge="start"
@@ -87,13 +101,12 @@ export default function Navbar() {
             aria-label="menu"
             onClick={handleDashboard}
           >
-            <img src={Logo} alt="logo" className={classes.logo} />
+            <GrRaspberry size={70} color="#2C2C2C" />
+            <span className={classes.logoSpan}>BlueBerry</span>
           </IconButton>
           <div className={classes.root}>
             <Link to="/" className={classes.login}>
-              <Typography variant="h6" className={classes.title}>
-                <span>BLOGSMITH</span>
-              </Typography>
+              <Typography variant="h6" className={classes.title}></Typography>
             </Link>
           </div>
           <div>
