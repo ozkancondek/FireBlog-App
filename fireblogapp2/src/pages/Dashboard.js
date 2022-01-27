@@ -33,7 +33,7 @@ const Dashboard = () => {
   return (
     <div className={classes.mainRoot}>
       <Typography className={classes.title} variant="h3" noWrap>
-        ─ ─ ─ All Blogs ─ ─ ─ ─
+        Dashboard
       </Typography>
       <>
         <Grid container className={classes.root} justifyContent="center">
