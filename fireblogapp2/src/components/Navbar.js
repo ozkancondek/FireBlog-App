@@ -58,6 +58,19 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     textDecoration: "none",
   },
+  signinSignup: {
+    display: "flex",
+    flexDirection: "row",
+    color: "#2c2c2c",
+
+    fontWeight: "bolder",
+  },
+  signinsignup: {
+    marginLeft: "5px",
+    color: "#2c2c2c",
+    border: "2px solid #2c2c2c",
+    fontWeight: "bolder",
+  },
 }));
 
 export default function Navbar() {
@@ -109,65 +122,59 @@ export default function Navbar() {
               <Typography variant="h6" className={classes.title}></Typography>
             </Link>
           </div>
+
           <div>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle style={{ fontSize: "40px" }} />
-            </IconButton>
             {currentUser?.email ? (
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <Link to="/profile" className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                </Link>
-                <Link to="/new-blog" className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>New Blog</MenuItem>
-                </Link>
-                <Link to="/login" className={classes.linkStyle}>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                </Link>
-              </Menu>
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle style={{ fontSize: "40px" }} />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <Link to="/profile" className={classes.linkStyle}>
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  </Link>
+                  <Link to="/new-blog" className={classes.linkStyle}>
+                    <MenuItem onClick={handleClose}>New Blog</MenuItem>
+                  </Link>
+                  <Link to="/login" className={classes.linkStyle}>
+                    <MenuItem
+                      className={classes.linkStyle}
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </MenuItem>
+                  </Link>
+                </Menu>
+              </div>
             ) : (
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
-              >
+              <div className={classes.signinSignup}>
                 <Link to="/login" className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>Login</MenuItem>
+                  <MenuItem className={classes.signinsignup}>Signin</MenuItem>
                 </Link>
                 <Link to="/register" className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>Register</MenuItem>
+                  <MenuItem className={classes.signinsignup}>Signup</MenuItem>
                 </Link>
-              </Menu>
+              </div>
             )}
           </div>
         </Toolbar>
