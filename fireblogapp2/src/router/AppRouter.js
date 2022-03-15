@@ -9,6 +9,7 @@ import Detail from "../pages/Detail";
 import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import { useAuth } from "../context/AuthContextProvider";
+import { Footer } from "../components/Footer";
 
 const AppRouter = () => {
   const { currentUser } = useAuth();
@@ -30,6 +31,7 @@ const AppRouter = () => {
           <Route path="*" element={<Navigate to="/register" />} />
         )}
       </Routes>
+      <Footer />
     </React.Fragment>
   );
 };
