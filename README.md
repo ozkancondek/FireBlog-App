@@ -21,6 +21,6 @@
 
 ## Demo
 
-Click [here](https://fire-blog-app.vercel.appm) to use the app!
+Click [here](https://fire-blog-app.vercel.app) to use the app!
 
 ---
