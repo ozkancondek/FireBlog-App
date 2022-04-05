@@ -17,7 +17,8 @@ import googlePng from "../assets/google.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    height: "110vh",
+
     "& .MuiPaper-root": {
       borderRadius: "30px",
       boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.75);",
